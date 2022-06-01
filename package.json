@@ -1,0 +1,27 @@
+{
+  "name": "vdt-season1-marvel-api",
+  "version": "1.0.0",
+  "description": "Projeto de autmoção da API Marvel da Primeira temporada do workshop viver de teste",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm cypress run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vinaud/vdt-season1-marvel-api.git"
+  },
+  "keywords": [
+    "nodejs",
+    "cypress",
+    "javascript"
+  ],
+  "author": "Vinaud",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vinaud/vdt-season1-marvel-api/issues"
+  },
+  "homepage": "https://github.com/vinaud/vdt-season1-marvel-api#readme",
+  "devDependencies": {
+    "cypress": "^9.7.0"
+  }
+}
