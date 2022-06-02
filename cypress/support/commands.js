@@ -25,7 +25,7 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 Cypress.Commands.add('setToken', function(){
-    cy.request({
+    cy.api({
         method: 'POST',
         url: '/sessions',
         body:  {
@@ -35,13 +35,13 @@ Cypress.Commands.add('setToken', function(){
         
     }).then(function(response){
         expect(response.status).to.eql(200);
-        cy.log(response.body.token);
-        Cypress.env('token', response.body.token)
+        Cypress.env('token', response.body.token);
+    
     });
 });
 
 Cypress.Commands.add('back2ThePast', function(){
-    cy.request({
+    cy.api({
         method: 'DELETE',
         url: '/back2thepast/6297fc216791aa00161c9804'
     }).then(function(response){

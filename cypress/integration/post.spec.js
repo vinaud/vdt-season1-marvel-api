@@ -5,7 +5,7 @@ describe('POST /characters', function() {
     before(function(){
 
         //custom commands
-        
+
         cy.setToken();
 
         cy.back2ThePast();
@@ -20,7 +20,7 @@ describe('POST /characters', function() {
             active: true
         }
 
-        cy.request({
+        cy.api({
             method: 'POST',
             url: '/characters',
             body: character,
