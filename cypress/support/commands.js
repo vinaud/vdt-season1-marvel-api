@@ -31,7 +31,8 @@ Cypress.Commands.add('setToken', function(){
         body:  {
              email: "vinaud@qacademy.io",
              password: "qa-cademy"
-        }
+        },
+        failOnStatusCode: false
         
     }).then(function(response){
         expect(response.status).to.eql(200);
@@ -43,8 +44,23 @@ Cypress.Commands.add('setToken', function(){
 Cypress.Commands.add('back2ThePast', function(){
     cy.api({
         method: 'DELETE',
-        url: '/back2thepast/6297fc216791aa00161c9804'
+        url: '/back2thepast/6297fc216791aa00161c9804',
+        failOnStatusCode: false
     }).then(function(response){
         expect(response.status).to.eql(200);
     })
+});
+
+Cypress.Commands.add('postCharacter', function(payLoad){
+    cy.api({
+        method: 'POST',
+        url: '/characters',
+        body: payLoad,
+        headers: {
+            Authorization: Cypress.env('token')
+        },
+        failOnStatusCode: false
+    }).then(function(response){
+        return response;
+    });
 });
