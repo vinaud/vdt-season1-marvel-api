@@ -16,12 +16,19 @@ describe('POST /characters', function() {
             cy.log(response.body.token);
             Cypress.env('token', response.body.token)
         });
+
+        cy.request({
+            method: 'DELETE',
+            url: '/back2thepast/6297fc216791aa00161c9804'
+        }).then(function(response){
+            expect(response.status).to.eql(200);
+        })
     })
 
     it('deve cadastrar um personagem', function(){
 
         const character = {
-            name: 'Wansa Maximoff',
+            name: 'Wanda Maximoff',
             alias: 'Feiticeira Escarlate',
             team: ['vingadores'],
             active: true
