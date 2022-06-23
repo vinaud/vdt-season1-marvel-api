@@ -77,3 +77,9 @@ Cypress.Commands.add('getCharacters', function(payLoad){
         return response;
     });
 });
+
+Cypress.Commands.add('populateCharacters', function(characters){
+    characters.forEach(function(character){
+        cy.postCharacter(character);
+    })
+})

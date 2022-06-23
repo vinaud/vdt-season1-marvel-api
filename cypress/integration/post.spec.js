@@ -22,7 +22,7 @@ describe('POST /characters', function() {
 
         cy.postCharacter(character).then(function(response){
             expect(response.status).to.be.equal(201);
-            expect(response.body.character_id.length).to.be.equal(24);
+            expect(response.body.character_id.length).to.be.equal(204);
         });
         
     });
