@@ -38,5 +38,16 @@ describe('GET /characters', function(){
             expect(response.body).to.be.a('array');
             expect(response.body.length).to.greaterThan(0);
         });
-    })
+    });
+
+    it('deve buscar personagem por nome', function(){
+        cy.searchCharacters('Logan').then(function(response){
+            expect(response.status).to.eq(200);
+            expect(response.body.length).to.be.eql(1); 
+            expect(response.body[0].alias).to.be.eql('Wolverine');
+            expect(response.body[0].team).to.be.eql(['Novos vingadores', 'x-men']);
+            expect(response.body[0].active).to.be.eql(true);
+        });
+
+    });
 })

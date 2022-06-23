@@ -65,10 +65,24 @@ Cypress.Commands.add('postCharacter', function(payLoad){
     });
 });
 
-Cypress.Commands.add('getCharacters', function(payLoad){
+Cypress.Commands.add('getCharacters', function(){
     cy.api({
         method: 'GET',
         url: '/characters',
+        headers: {
+            Authorization: Cypress.env('token')
+        },
+        failOnStatusCode: false
+    }).then(function(response){
+        return response;
+    });
+});
+
+Cypress.Commands.add('searchCharacters', function(characterName){
+    cy.api({
+        method: 'GET',
+        url: '/characters',
+        qs: { name: characterName },
         headers: {
             Authorization: Cypress.env('token')
         },
