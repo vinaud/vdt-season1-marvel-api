@@ -73,6 +73,7 @@ describe('GET /characters/id', function(){
                 Cypress.env('characterId', response.body.character_id)
             })
         });
+
         it('deve buscar o personagem pelo id', function(){
             const id = Cypress.env('characterId');
             cy.getCharacterById(id).then(function(response){
@@ -82,5 +83,14 @@ describe('GET /characters/id', function(){
                 expect(response.body.active).to.be.eql(true);
             })
         });
+
+        it('deve retornar 404 ao buscar personagem não cadastrado', function(){
+            const id = '62b4a917d25c4e70050b5951';
+            cy.getCharacterById(id).then(function(response){
+                expect(response.status).to.be.eql(404);
+            });
+        });
+
+        
     });
 });
