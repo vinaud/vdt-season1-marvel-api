@@ -110,3 +110,16 @@ Cypress.Commands.add('populateCharacters', function(characters){
         cy.postCharacter(character);
     })
 })
+
+Cypress.Commands.add('deleteCharacterById', function(characterId){
+    cy.api({
+        method: 'DELETE',
+        url: '/characters/' + characterId,
+        headers: {
+            Authorization: Cypress.env('token')
+        },
+        failOnStatusCode: false
+    }).then(function(response){
+        return response;
+    });
+});
