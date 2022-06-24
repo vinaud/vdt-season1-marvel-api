@@ -22,7 +22,7 @@ describe('POST /characters', function() {
 
         cy.postCharacter(character).then(function(response){
             expect(response.status).to.be.equal(201);
-            expect(response.body.character_id.length).to.be.equal(204);
+            expect(response.body.character_id.length).to.be.equal(24);
         });
         
     });
@@ -53,4 +53,86 @@ describe('POST /characters', function() {
             
         });
     });
+
+    context('quando o usuário não informa todos os dados do cadastro', function(){
+        it('deve validar o campo "name"', function(){
+            const character = {
+                alias: 'Black Bolt',
+                team: ['Inumanos', 'iluminatti'],
+                active: true
+            }
+
+            cy.postCharacter(character).then(function(response){
+                expect(response.status).to.be.equal(400);
+                expect(response.body.error).to.be.equal('Bad Request');
+                expect(response.body.validation.body.message).to.be.equal('\"name\" is required');
+            });
+
+        });
+
+        it('deve validar o campo "alias"', function(){
+            const character = {
+                name: 'Blackagar Boltagon',
+                team: ['Inumanos', 'iluminatti'],
+                active: true
+            }
+
+            cy.postCharacter(character).then(function(response){
+                expect(response.status).to.be.equal(400);
+                expect(response.body.error).to.be.equal('Bad Request');
+                expect(response.body.validation.body.message).to.be.equal('\"alias\" is required');
+            });
+
+        });
+
+        it('deve validar o campo "team"', function(){
+            const character = {
+                name: 'Blackagar Boltagon',
+                alias: 'Black Bolt',
+                active: true
+            }
+
+            cy.postCharacter(character).then(function(response){
+                expect(response.status).to.be.equal(400);
+                expect(response.body.error).to.be.equal('Bad Request');
+                expect(response.body.validation.body.message).to.be.equal('\"team\" is required');
+            });
+
+        });
+
+        it('deve validar o campo "active"', function(){
+            const character = {
+                name: 'Blackagar Boltagon',
+                alias: 'Black Bolt',
+                team: ['Inumanos', 'iluminatti']
+            }
+
+            cy.postCharacter(character).then(function(response){
+                expect(response.status).to.be.equal(400);
+                expect(response.body.error).to.be.equal('Bad Request');
+                expect(response.body.validation.body.message).to.be.equal('\"active\" is required');
+            });
+
+        });
+
+        before(function(){
+            cy.back2ThePast();
+        })
+
+        it('deve cadastrar mesmo sem preencher o campo "age"', function(){
+            const character = {
+                name: 'Blackagar Boltagon',
+                alias: 'Black Bolt',
+                team: ['Inumanos', 'iluminatti'],
+                active: true
+            }
+
+            cy.postCharacter(character).then(function(response){
+                expect(response.status).to.be.equal(201);
+                expect(response.body.character_id.length).to.be.equal(24);
+            });
+
+        });
+        
+    })
 });
