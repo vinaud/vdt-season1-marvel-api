@@ -4,7 +4,8 @@
   "description": "Projeto de autmoção da API Marvel da Primeira temporada do workshop viver de teste",
   "main": "index.js",
   "scripts": {
-    "test": "npm cypress run"
+    "back2thePast": "sh ./back2thePast.sh",
+    "test": "npm run back2thePast && npm cypress run"
   },
   "repository": {
     "type": "git",

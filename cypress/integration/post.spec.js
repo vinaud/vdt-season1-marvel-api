@@ -8,7 +8,7 @@ describe('POST /characters', function() {
 
         cy.setToken();
 
-        cy.back2ThePast();
+       // cy.back2ThePast();
     })
 
     it('deve cadastrar um personagem', function(){
@@ -115,9 +115,6 @@ describe('POST /characters', function() {
 
         });
 
-        before(function(){
-            cy.back2ThePast();
-        })
 
         it('deve cadastrar mesmo sem preencher o campo "age"', function(){
             const character = {
