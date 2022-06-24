@@ -1,15 +1,6 @@
 /// <reference types="Cypress" />
 
 describe('POST /characters', function() {
-    
-    before(function(){
-
-        //custom commands
-
-        cy.setToken();
-
-       // cy.back2ThePast();
-    })
 
     it('deve cadastrar um personagem', function(){
 

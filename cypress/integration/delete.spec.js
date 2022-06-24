@@ -1,11 +1,5 @@
 describe('DELETE /character/id', function(){
 
-    before(function(){
-
-        //cy.back2ThePast();
-        cy.setToken();
-    });
-
     const tochaHumana = {
         name: "Jhonny Storm",
         alias: "Tocha Humana",
